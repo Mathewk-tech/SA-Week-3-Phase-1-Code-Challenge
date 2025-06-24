@@ -1,42 +1,156 @@
-.hidden{
-    display: none;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#post-list-section, #post-detail-section {
-  display: inline-block;
-  vertical-align: top;
-  width: 45%;
-  margin: 10px;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
 }
+
+
+h1, p {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #2c3e50;
+}
+
+p {
+  margin-bottom: 1em;
+  color: #7f8c8d;
+}
+
+
+.m {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
 
 #post-list-section {
-  float: left;
+  flex: 1 1 45%;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+#post-list {
+  list-style: none;
+  margin-top: 1em;
+}
+
+#post-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ecf0f1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#post-list li:hover {
+  background: #dfe6e9;
+}
+
 
 #post-detail-section {
-  float: right;
-  border-left: 2px solid #ccc;
-  padding-left: 20px;
+  flex: 1 1 45%;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.post-item {
-  cursor: pointer;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-img {
-  margin-top: 10px;
+#post-detail-section img {
   max-width: 100%;
   height: auto;
+  border-radius: 5px;
 }
-.m{
-  display: flex;
+
+#new-post-section {
+  margin-top: 2rem;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#new-post-section h2 {
+  margin-bottom: 10px;
+}
+
+#new-post-section button {
+  padding: 10px 15px;
+  background-color: #2ecc71;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+#new-post-section button:hover {
+  background-color: #27ae60;
+}
+
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #bdc3c7;
+}
+
+form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+form button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background-color: #2980b9;
+}
+
+
+#delete-post {
+  background-color: #e74c3c;
+}
+
+#delete-post:hover {
+  background-color: #c0392b;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.post-count {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 10px;
 }

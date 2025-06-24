@@ -1,3 +1,4 @@
+const url="http://localhost:3000/posts";
 const postList = document.getElementById("post-list");
 const postFormContainer = document.getElementById("p");
 const createBtn = document.querySelector("#new-post-section button");
@@ -47,7 +48,7 @@ form.addEventListener("submit", function (e) {
 
   const newPost = { title, author, image, content };
 
-  fetch("http://localhost:3000/posts", {
+  fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,50 +72,63 @@ form.addEventListener("submit", function (e) {
 // Show post details
 function displayPostDetails(post) {
   detail.innerHTML = `
-  <form>
-    <h3>${post.title}</h3>
-    <p><strong>Author:</strong> ${post.author}</p>
-    ${post.image ? `<img src="${post.image}" width="200">` : ""}
-    <p>${post.content}</p>
-    <button id="delete-post">Delete</button>
-    <button id="save-post">save changes</button>
-    <button id="edit-post">edit</button>
+    <div id="post-view">
+      <h3>${post.title}</h3>
+      <p><strong>Author:</strong> ${post.author}</p>
+      ${post.image ? `<img src="${post.image}" width="200"><br>` : ""}
+      <p id="content-text">${post.content}</p>
+      <button id="delete-post">Delete</button>
+      <button id="edit-post">Edit</button>
+    </div>
+
+    <form id="edit-form" class="hidden">
+      <input type="text" id="edit-title" value="${post.title}" /><br>
+      <textarea id="edit-content">${post.content}</textarea><br>
+      <button type="button" id="save-post">Save Changes</button>
+      <button type="button" id="cancel-edit">Cancel</button>
     </form>
   `;
-  document.getElementById("edit-post").addEventListener('click', function () {
-  const updatedPost = {
-    title: document.getElementById("post-title").value,
-    content: document.getElementById("post-content").value
-  };
 
-  fetch(`http://localhost:3000/posts/${currentPostId}`, {
-    method: "PUT",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updatedPost)
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("edit post:", data);
-      loadPosts();
-      displayPostDetails(data);
-    })
-    .catch(err => console.error("Update error:", err));
-});
-
-
-
-  document.getElementById("save-post").addEventListener('click',function(){
-    if(confirm("do you want to save these changes?")){
-      saveChanges(post.id);
-    }
-  });
-
+  // DELETE button
   document.getElementById("delete-post").addEventListener("click", function () {
-    if (confirm("do you want to delete this post?")) {
+    if (confirm("Do you want to delete this post?")) {
       deletePost(post.id);
     }
   });
+
+  // EDIT button - shows the form
+  document.getElementById("edit-post").addEventListener("click", function () {
+    document.getElementById("post-view").classList.add("hidden");
+    document.getElementById("edit-form").classList.remove("hidden");
+  });
+
+  // CANCEL button - hides form and shows original view
+  document.getElementById("cancel-edit").addEventListener("click", function () {
+    displayPostDetails(post); // re-render original view
+  });
+
+  // SAVE button - send PUT request
+  document.getElementById("save-post").addEventListener("click", function () {
+    const updatedPost = {
+      title: document.getElementById("edit-title").value,
+      content: document.getElementById("edit-content").value
+    };
+
+    fetch(`http://localhost:3000/posts/${post.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedPost)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Post updated:", data);
+        loadPosts();
+        displayPostDetails(data);
+      })
+      .catch(err => console.error("Update error:", err));
+  });
 }
+
 
 // Show post in list
 function displayPostInList(post) {
@@ -172,11 +186,3 @@ function deletePost(id) {
 
 // Initial load
 loadPosts();
-
-
-
-
-
-
-
-
