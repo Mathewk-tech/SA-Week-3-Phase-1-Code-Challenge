@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1 style="text-align: center;">Post Pulse</h1>
+  <p style="text-align: center;">Modern blog post management</p>
+
+  <!-- List of Posts -->
+  <section id="post-list-section">
+    <h2>Blog Posts</h2>
+    <p class="post-count">0 post</p>
+ 
+    <ul id="post-list"></ul>
+  </section>
+
+  <hr>
+
+  <!-- Post Details (optional) -->
+  <section id="post-detail-section">
+    <div id="detail"></div>
+  </section>
+
+  <hr>
+
+  <!-- New Post Form -->
+  <section id="new-post-section">
+    <h2>+ Add New Post</h2>
+    <button>Create New Post</button>
+    <div id="p" class="hidden">
+      <form id="new-post-form">
+        <input type="text" id="title" placeholder="Title" required /><br>
+        <input type="text" id="author" placeholder="Author" required /><br>
+        <input type="text" id="image" placeholder="Image URL"><br>
+        <textarea id="content" placeholder="Content" required></textarea><br>
+        <button type="submit">Add Post</button>
+        <button type="button" id="cancel-post">Cancel</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>
