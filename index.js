@@ -62,7 +62,7 @@ form.addEventListener("submit", function (e) {
       displayPostInList(data);
       displayPostDetails(data);
 
-      // ✅ Add this here:
+     
       updatePost();
     });
 });
@@ -77,8 +77,37 @@ function displayPostDetails(post) {
     ${post.image ? `<img src="${post.image}" width="200">` : ""}
     <p>${post.content}</p>
     <button id="delete-post">Delete</button>
+    <button id="save-post">save changes</button>
+    <button id="edit-post">edit</button>
     </form>
   `;
+  document.getElementById("edit-post").addEventListener('click', function () {
+  const updatedPost = {
+    title: document.getElementById("post-title").value,
+    content: document.getElementById("post-content").value
+  };
+
+  fetch(`http://localhost:3000/posts/${currentPostId}`, {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedPost)
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("edit post:", data);
+      loadPosts();
+      displayPostDetails(data);
+    })
+    .catch(err => console.error("Update error:", err));
+});
+
+
+
+  document.getElementById("save-post").addEventListener('click',function(){
+    if(confirm("do you want to save these changes?")){
+      saveChanges(post.id);
+    }
+  });
 
   document.getElementById("delete-post").addEventListener("click", function () {
     if (confirm("do you want to delete this post?")) {
@@ -89,8 +118,8 @@ function displayPostDetails(post) {
 
 // Show post in list
 function displayPostInList(post) {
-  const li = document.createElement("li"); // ✅ create <li> instead of <div>
-  li.textContent = post.title;             // ✅ only show title
+  const li = document.createElement("li");
+  li.textContent = post.title;
   li.style.cursor = "pointer";
 
   // Show full post details when clicked
@@ -113,6 +142,23 @@ function loadPosts() {
     .catch((err) => console.error("Load error:", err));
 }
 
+function saveChanges(id, updatedPost){
+  fetch(`http://localhost:3000/posts/${id}`, {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedPost)
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Post updated:", data);
+    loadPosts();
+    displayPostDetails(data);
+  })
+  .catch(err => console.error("Update error:", err));
+}
+
+
+
 // Delete post
 function deletePost(id) {
   fetch(`http://localhost:3000/posts/${id}`, { method: "DELETE" })
@@ -126,6 +172,11 @@ function deletePost(id) {
 
 // Initial load
 loadPosts();
+
+
+
+
+
 
 
 
