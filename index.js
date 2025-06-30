@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/posts";  //this is also my api..i modified it
+const url = "http://localhost:3000/posts";//this is also my api
 const postList = document.getElementById("post-list");
 const postFormContainer = document.getElementById("p");
 const createBtn = document.querySelector("#new-post-section button");
