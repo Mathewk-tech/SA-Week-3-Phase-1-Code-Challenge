@@ -1,4 +1,5 @@
-const url = "http://localhost:3000/posts";//this is also my api
+const url = "http://localhost:3000/posts";//this is also my api..use this to access my api in the terminal json-server --watch db.json
+
 const postList = document.getElementById("post-list");
 const postFormContainer = document.getElementById("p");
 const createBtn = document.querySelector("#new-post-section button");
