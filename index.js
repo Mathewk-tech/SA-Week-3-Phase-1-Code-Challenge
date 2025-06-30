@@ -1,4 +1,4 @@
-const url = "https://dev.to/api/articles";
+const url = "http://localhost:3000/posts";  //this is also my api..i modified it
 const postList = document.getElementById("post-list");
 const postFormContainer = document.getElementById("p");
 const createBtn = document.querySelector("#new-post-section button");
@@ -8,16 +8,16 @@ const detail = document.getElementById("detail");
 const r = document.querySelector(".post-count");
 
 function updatePost() {
-  const items = document.querySelector("#post-list li");
+  const items = document.querySelectorAll("#post-list li");
   const f = items.length;
 
   if (f > 0) {
-    f += 1;
-    r.textContent = `posts ${f}`;
+    r.textContent = `Posts: ${f}`;
   } else {
-    r.textContent = "no posts yet";
+    r.textContent = "No posts yet";
   }
 }
+
 
 // Show form
 createBtn.addEventListener("click", () => {
@@ -38,7 +38,7 @@ form.addEventListener("submit", function (e) {
   const image = document.getElementById("image").value;
   const content = document.getElementById("content").value;
 
-  const newPost = { title, author, cover_image: image, content };
+  const newPost = { title, author, image, content };
 
   fetch(url, {
     method: "POST",
@@ -64,7 +64,7 @@ function displayPostDetails(post) {
     <div id="post-view">
       <h3>${post.title}</h3>
       <p><strong>Author:</strong> ${post.author}</p>
-      ${post.cover_image ? `<img src="${post.cover_image}" style="width:100%; max-width:600px; height:auto;"><br>` : ""}
+      ${post.image ? `<img src="${post.image}" style="width:100%; max-width:600px; height:auto; margin: 10px 0;"><br>` : ""}
       <p id="content-text">${post.content}</p>
       <button id="delete-post">Delete</button>
       <button id="edit-post">Edit</button>
@@ -99,7 +99,7 @@ function displayPostDetails(post) {
       content: document.getElementById("edit-content").value
     };
 
-    fetch(`https://dev.to/api/articles/${post.id}`, {
+    fetch(`http://localhost:3000/posts/${post.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedPost)
@@ -129,17 +129,19 @@ function displayPostInList(post) {
 
 // Load all posts
 function loadPosts() {
-  fetch("https://dev.to/api/articles")
+  fetch("http://localhost:3000/posts")
     .then((res) => res.json())
     .then((data) => {
       postList.innerHTML = "";
       data.forEach(displayPostInList);
+      updatePost(); // Add this line
     })
     .catch((err) => console.error("Load error:", err));
 }
 
+
 function saveChanges(id, updatedPost) {
-  fetch(`https://dev.to/api/articles/${id}`, {
+  fetch(`http://localhost:3000/posts/${id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedPost)
@@ -154,7 +156,7 @@ function saveChanges(id, updatedPost) {
 }
 
 function deletePost(id) {
-  fetch(`https://dev.to/api/articles/${id}`, { method: "DELETE" })
+  fetch(`http://localhost:3000/posts/${id}`, { method: "DELETE" })
     .then(() => {
       detail.innerHTML = "";
       loadPosts();
