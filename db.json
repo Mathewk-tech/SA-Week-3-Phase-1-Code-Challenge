@@ -1,7 +1,59 @@
 {
   "posts": [
     {
-      "id": 1
+      "id": 1,
+      "title": "AI in Robotics: The Future is Here",
+      "author": "Dr. Sarah Chen",
+      "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=200&fit=crop",
+      "content": "Artificial Intelligence is revolutionizing the robotics industry. From autonomous vehicles to smart manufacturing, AI-powered robots are transforming how we work and live. This comprehensive guide explores the latest developments in AI robotics and what the future holds.",
+      "date": "2024-01-15",
+      "tags": ["AI", "Robotics", "Technology"],
+      "views": 1250,
+      "likes": 89
+    },
+    {
+      "id": 2,
+      "title": "Getting Started with React Hooks",
+      "author": "Michael Rodriguez",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop",
+      "content": "React Hooks have changed the way we write React applications. In this tutorial, we'll explore useState, useEffect, and custom hooks with practical examples. Learn how to build cleaner, more maintainable React components.",
+      "date": "2024-01-12",
+      "tags": ["React", "JavaScript", "Web Development"],
+      "views": 2100,
+      "likes": 156
+    },
+    {
+      "id": 3,
+      "title": "The Future of Web Development",
+      "author": "Emily Watson",
+      "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=200&fit=crop",
+      "content": "Web development is evolving rapidly with new frameworks, tools, and paradigms. From serverless architecture to JAMstack, discover the trends that will shape the next decade of web development.",
+      "date": "2024-01-10",
+      "tags": ["Web Development", "Trends", "Future Tech"],
+      "views": 1800,
+      "likes": 134
+    },
+    {
+      "id": 4,
+      "title": "Design Systems That Scale",
+      "author": "Alex Thompson",
+      "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=200&fit=crop",
+      "content": "Building scalable design systems is crucial for growing teams and products. Learn how to create consistent, maintainable design systems that work across multiple platforms and teams.",
+      "date": "2024-01-08",
+      "tags": ["Design", "UI/UX", "Systems"],
+      "views": 950,
+      "likes": 67
+    },
+    {
+      "id": 5,
+      "title": "TypeScript Best Practices for 2024",
+      "author": "David Kim",
+      "image": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=200&fit=crop",
+      "content": "TypeScript continues to grow in popularity. Here are the best practices, tips, and tricks for writing better TypeScript code in 2024. From advanced types to performance optimization.",
+      "date": "2024-01-05",
+      "tags": ["TypeScript", "JavaScript", "Best Practices"],
+      "views": 2400,
+      "likes": 198
     }
   ]
 }
